@@ -1,0 +1,37 @@
+﻿@model CharacterViewModel
+
+
+<div class="container">
+    <h1 class="text-success text-sm-center text-md-left" id="title-text">@Model.Name</h1>
+</div>
+
+@if (String.IsNullOrWhiteSpace(Model.Subrace))
+{
+    <h3 class="text-primary mx-5">@Model.Race @Model.Background</h3>
+}
+else
+{
+    <h3 class="text-primary mx-5">@Model.Subrace @Model.Race @Model.Background</h3>
+}
+
+<h3 class="text-primary mx-5">@Model.Subclass @Model.Class</h3>
+
+<hr />
+
+<div class="container-fluid my-2">
+    <div class="row">
+        @foreach (var stat in Model.Stats)
+        {
+            <div class="col col-md-2">
+                <p class="text-center">
+                    @stat.Key
+                    <br />
+                    @stat.Value
+                </p>
+            </div>
+            <hr class="invisible" />
+        }
+    </div>
+</div>
+
+@Html.ActionLink("Refresh", "Birth", "Character", null, new { @class = "btn btn-primary btn-lg btn-block mt-5" })
